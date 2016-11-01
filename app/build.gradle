@@ -1,0 +1,98 @@
+apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'slyce-messaging'
+    publishedGroupId = 'it.slyce.slycemessaging'
+    libraryName = 'slyce-messaging'
+    artifact = 'slyce-messaging'
+    libraryDescription = 'A messaging library for Android'
+    siteUrl = 'https://github.com/snipsnap/SlyceMessaging'
+    gitUrl = 'https://github.com/snipsnap/SlyceMessaging.git'
+    libraryVersion = '1.0.1'
+    developerId = 'snipsnap'
+    developerName = 'SnipSnap'
+    developerEmail = 'support@snipsnap.it'
+    licenseName = 'The MIT License'
+    licenseUrl = 'https://opensource.org/licenses/mit-license.php'
+    allLicenses = ["MIT"]
+}
+
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "com.chendong.game.origin"
+        minSdkVersion 21
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "b5b72facebe29a388388bd9b", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+        ]
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    apt 'com.jakewharton:butterknife-compiler:8.2.1'
+    // Design
+    compile files('libs/HwPush_SDK_V2705.jar')
+    //UI
+    //滚动的数字
+    //圆角ImageView
+    //简单的recyclerview
+    //超级对话框
+    //登录按钮
+    //波浪
+    //动画
+    //波纹扩撒
+    //粒子
+    compile files('libs/avoscloud-mixpush-v3.14.3.jar')
+
+    //editview
+    compile 'cn.jiguang:jpush:2.1.9'
+    compile 'com.jakewharton:butterknife:8.2.1'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'io.reactivex:rxjava:1.1.6'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:design:23.4.0'
+    compile 'com.android.support:percent:23.4.0'
+    compile 'com.android.support:recyclerview-v7:23.4.0'
+    compile 'com.android.support:support-v13:23.4.0'
+    compile 'com.android.support:cardview-v7:23.4.0'
+    compile 'com.orhanobut:logger:1.9'
+    compile 'com.github.Kennyc1012:MultiStateView:1.2.0'
+    compile 'com.ufreedom.uikit:FloatingTextLibrary:0.2.0'
+    compile 'com.robinhood.ticker:ticker:1.1.0'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile 'com.jude:easyrecyclerview:4.2.2'
+    compile 'com.afollestad.material-dialogs:core:0.8.5.9'
+    compile 'com.github.dmytrodanylyk.circular-progress-button:library:1.1.3'
+    compile 'com.tt:whorlviewlibrary:1.0.3'
+    compile 'com.github.john990:WaveView:v0.9'
+    compile 'com.roger.catloadinglibrary:catloadinglibrary:1.0.1'
+    compile 'com.github.traex.rippleeffect:library:1.3'
+    compile 'com.plattysoft.leonids:LeonidsLib:1.3.2'
+    compile 'com.roger.psdloadingview.library:Library:1.0.1'
+    compile 'com.android.support:support-v4:23.4.0'
+}
